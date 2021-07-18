@@ -1,0 +1,62 @@
+[
+  {
+    "label": "1 Month",
+    "value": "1 Month",
+    "role": "Master"
+  },
+  {
+    "label": "2 Months",
+    "value": "2 Months",
+    "role": "Master"
+  },
+  {
+    "label": "3 Months",
+    "value": "3 Months",
+    "role": "Master"
+  },
+  {
+    "label": "4 Months",
+    "value": "4 Months",
+    "role": "Master"
+  },
+  {
+    "label": "5 Months",
+    "value": "5 Months",
+    "role": "Master"
+  },
+  {
+    "label": "6 Months",
+    "value": "6 Months",
+    "role": "Developer"
+  },
+  {
+    "label": "7 Months",
+    "value": "7 Months",
+    "role": "Developer"
+  },
+  {
+    "label": "8 Months",
+    "value": "8 Months",
+    "role": "Developer"
+  },
+  {
+    "label": "9 Months",
+    "value": "9 Months",
+    "role": "Developer"
+  },
+  {
+    "label": "10 Months",
+    "value": "10 Months",
+    "role": "Developer"
+  },
+  {
+    "label": "11 Months",
+    "value": "11 Months",
+    "role": "Guest"
+  },
+  {
+    "label": "12 Months",
+    "value": "12 Months",
+    "role": "Guest"
+  }
+]

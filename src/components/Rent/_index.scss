@@ -1,0 +1,145 @@
+.rent {
+  max-width: 94% !important;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.98;
+  .rent_stages {
+    margin-top: 16px;
+
+    .rent_title {
+      font-size: 25px;
+      color: rgb(64, 34, 112) !important;
+      font-weight: bold;
+      @include heart();
+    }
+    .rent_ratio {
+      // width: 89% !important;
+      .ratio_num {
+        color: rgb(158, 158, 158);
+        font-size: 12px;
+        margin-right: 10px;
+      }
+      .ratio_circle {
+      }
+    }
+    .rent_ratio.foen {
+      width: 100% !important;
+      margin-left: 0 !important;
+      @include heart();
+
+      .rent_content {
+        width: 80% !important;
+      }
+      .my_rent_auth {
+        width: 100% !important;
+        * {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+  .rent_content {
+    margin-top: 34px;
+    .rent_option {
+      .op_button {
+        font-size: 13px;
+        transition-duration: 0.5s;
+        color: rgb(114, 113, 116);
+      }
+    }
+    .butas {
+      border-width: 2px !important;
+      border-style: solid;
+      opacity: 0.8;
+      min-height: 55px;
+      background-color: white !important;
+
+      border-color: rgb(167, 163, 163);
+      &:hover {
+        .op_button {
+          transition-duration: 0.5s;
+        }
+      }
+      &:focus {
+        border-color: rgb(160, 113, 237);
+
+        .op_button {
+          color: rgb(151, 99, 233);
+          transition-duration: 0.5s;
+        }
+      }
+    }
+    .bg-success {
+      background: rgba(6, 206, 129, 0.994) !important;
+    }
+    .butas.saa {
+      background: rgb(58, 29, 102) !important;
+      margin-top: 13px !important;
+    }
+  }
+  .bubuta {
+    border-color: rgb(160, 113, 237) !important;
+    .op_button {
+      color: rgb(130, 93, 191) !important;
+    }
+  }
+  .for_input {
+    .Op_head {
+      margin-bottom: 4px;
+    }
+    margin-top: 16px !important;
+    .optional_input {
+      font-size: 13.5px !important;
+      padding-top: 14px !important;
+      padding-bottom: 14px !important;
+      padding-left: 17px !important;
+    }
+  }
+  .optional {
+    font-size: 14px;
+  }
+  .css-yk16xz-control {
+    min-height: 49px;
+    border: 2.5px solid rgba(0, 0, 0, 0.13);
+  }
+  .css-1uccc91-singleValue {
+    padding-left: 9px !important;
+  }
+  input:active {
+    &::placeholder {
+      display: none !important;
+    }
+  }
+  .op_button_next {
+    font-size: 16px;
+    text-transform: lowercase;
+  }
+  .the_options {
+    padding: 11px 25px;
+    border-radius: 7px;
+    background: rgba(204, 200, 204, 0.678);
+    .the_options_1 {
+      border-color: white !important;
+      padding: 11px 0px;
+      .pre_title {
+        font-size: 13.5px;
+        font-weight: normal;
+      }
+      .pre_amount {
+        font-size: 13.7px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .rent {
+    max-width: 87% !important;
+    padding-bottom: 30px;
+    .rent_title {
+      font-size: 19px !important;
+      margin-left: -4px;
+    }
+  }
+}
