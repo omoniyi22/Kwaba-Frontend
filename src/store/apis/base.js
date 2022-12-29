@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const BASE = `https://kwaba-interview.herokuapp.com`;
+const BASE = `https://kwaba.onrender.com`;
 
 
 export const AUTH_TOKEN = "benny-token";
