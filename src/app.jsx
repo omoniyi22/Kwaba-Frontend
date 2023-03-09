@@ -7,9 +7,7 @@ import { Button } from "rsuite";
 import { LogoutAction } from "./store/actions/Auth";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     let { isAuthenticated } = this.props;
     return (

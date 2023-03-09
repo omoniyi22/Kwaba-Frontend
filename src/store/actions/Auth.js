@@ -2,15 +2,12 @@ import {
   RegisterApi,
   LoginApi,
   editProfile,
-  editProfileInstructor,
 } from "../apis/service";
-import { Dispatch } from "redux";
 import {
   AUTHENTICATED,
   AUTH_LOADING,
   LOGOUT,
   AUTH_ERROR,
-  PROFILE_ERROR,
   CLEAR_AUTH_ERROR,
   PROFILE_CHANGED,
 } from "../types";
@@ -19,7 +16,7 @@ export const clearAuthErrorAction = () => async (dispatch) => {
   dispatch({ type: CLEAR_AUTH_ERROR });
 };
 
-export const RegisterAction = (regDetails, history) => async (dispatch) => {
+export const RegisterAction = (regDetails) => async (dispatch) => {
   dispatch({
     type: AUTH_LOADING,
     payload: true,
@@ -36,16 +33,17 @@ export const RegisterAction = (regDetails, history) => async (dispatch) => {
       register: register.data,
     });
   } catch (error) {
+    let err
     console.log({ err: error.response });
     if (error.response) {
-      error = error.response.data.msg;
+      err = error.response.data.msg;
       console.log({ error });
     } else {
-      error = "Something went wrong. Try Again";
+      err = "Something went wrong. Try Again";
     }
     dispatch({
       type: AUTH_ERROR,
-      payload: error,
+      payload: err,
     });
   }
 };
@@ -70,16 +68,17 @@ export const LoginAction = (loginDetails) => async (dispatch) => {
       login: login.data,
     });
   } catch (error) {
+    let err
     console.log({ err: error.response });
     if (error.response) {
-      error = error.response.data.msg;
+      err = error.response.data.msg;
       console.log({ error });
     } else {
-      error = "Something went wrong. Try Again";
+      err = "Something went wrong. Try Again";
     }
     dispatch({
       type: AUTH_ERROR,
-      payload: error,
+      payload: err,
     });
   }
 };
@@ -104,21 +103,22 @@ export const ProfileUpdate =
       });
       callback();
     } catch (error) {
+      let err
       console.log({ err: error.response });
       console.log({ err: error });
       if (error.response) {
-        error = error.response.data.msg;
+        err = error.response.data.msg;
         console.log({ error });
       } else {
-        error = "Something went wrong. Try Again";
+        err = "Something went wrong. Try Again";
       }
       dispatch({
         type: AUTH_ERROR,
-        payload: error,
+        payload: err,
       });
     }
   };
 
-export const LogoutAction = (history) => async (dispatch) => {
+export const LogoutAction = () => async (dispatch) => {
   dispatch({ type: LOGOUT });
 };

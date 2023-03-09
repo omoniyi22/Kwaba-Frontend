@@ -1,15 +1,9 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import reducers from "./reducers";
+
 import thunk from "redux-thunk";
-import logger, { createLogger } from "redux-logger";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 
-
-
-
+import { persistStore } from "redux-persist";
 import rootRuducer from './reducers'
-
 
 const configureStore = () => {
   const store = createStore(

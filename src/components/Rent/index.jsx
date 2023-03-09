@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Breakdown from "./Breakdown";
 import Option from "./Option";
-import { Progress } from "rsuite";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -17,19 +15,13 @@ export class Rent extends Component {
     this.changeThird = this.changeThird.bind(this);
   }
   changeSecond() {
-    this.setState({ postion: 2, postionTitle: "Payment Breakdown" });
+    this.setState({ postion: 2, postionTitle: "Payment " });
   }
   changeThird() {
     this.setState({ postion: 3, postionTitle: "Application Completed" });
   }
   render() {
-    const { Circle } = Progress;
-    const value = 0.66;
-    const style = {
-      width: 120,
-      display: "inline-block",
-      marginRight: 10,
-    };
+   
     return (
       <div className=" rent">
         <div className="rent_stages  flex">

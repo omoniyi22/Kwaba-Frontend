@@ -4,7 +4,6 @@ import {
   AUTH_LOADING,
   LOGOUT,
   USER_LOADED,
-  GET_PROFILE,
   CLEAR_AUTH_ERROR,
 } from "../types";
 
@@ -53,8 +52,7 @@ export default function (state = initialState, action) {
         isLoading: false,
         errorMsg: action.payload,
       };
-    case AUTHENTICATED:
-    case AUTHENTICATED:
+
     case LOGOUT:
       localStorage.removeItem("token");
       return {
