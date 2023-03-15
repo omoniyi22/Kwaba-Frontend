@@ -1,32 +1,46 @@
-import { MAKE_PAYMENT, GET_ALL_TRANSACTIONS } from "./../types"
+import { MADE_PAYMENT, GET_ALL_TRANSACTIONS, AUTH_ERROR, AUTH_LOADING, CLEAR_AUTH_ERROR } from "./../types"
+import PaystackPop from "@paystack/inline-js"
+import dotenv from "dotenv"
+import { getAllTransactions } from "../apis/service"
+dotenv.config()
 
-
-export const ProfileUpdate =
-  (profileData, callback) => async (dispatch, state) => {
-    console.log({ profileData });
+export const MakePayment =
+  (paymentData, callback) => async (dispatch, state) => {
+    console.log({ paymentData });
     try {
       await dispatch({ type: AUTH_LOADING });
       let Profile = await state().user;
-      console.log({ Profile: Profile });
-      let ProfileId = Profile.user._id;
-      let user = await editProfile(ProfileId, profileData);
+      let email = Profile.user.email;
+      let name = Profile.user.full_name;
+      console.log({ named: name })
+      // let phone = Profile.user.phone;
 
-      user = await user.data.user;
-      // user = { ...Profile, user };
+      let paystack = new PaystackPop()
+      await paystack.newTransaction({
+        key: process.env.REACT_APP_PAYSTACK_TEST_KEY,
+        amount: paymentData.first_payment * 100,
+        email,
+        firstname: name.split(" ")[0],
+        lastname: name.split(" ")[1] ? name.split(" ")[1] : name.split(" ")[0],
 
-      console.log({ user });
-      await dispatch({
-        type: PROFILE_CHANGED,
-        payload: user,
-      });
-      callback();
+        async onSuccess() {
+          await callback();
+        },
+
+        async onCancel() {
+          dispatch({
+            type: AUTH_ERROR,
+            payload: "AN ERROR OCCURED",
+          });
+        }
+
+      })
     } catch (error) {
       let err
-      console.log({ err: error.response });
       console.log({ err: error });
       if (error.response) {
         err = error.response.data.msg;
-        console.log({ error });
+        // console.log({ error });
       } else {
         err = "Something went wrong. Try Again";
       }
@@ -36,51 +50,34 @@ export const ProfileUpdate =
       });
     }
   };
-export const getAllCoursesApi = (courseData) => async (dispatch, state) => {
-  dispatch({
-    type: GET_ALL_COURSES_LOADING,
-    payload: true,
-  });
+
+
+export const GetAllTransactions = (email) => async (dispatch, state) => {
+  // await dispatch({ type: AUTH_LOADING });
   try {
-    let courses = await getCourseApi();
-    console.log({ courses: courses.data.data });
+    let transactions = await getAllTransactions(email);
+    console.log({ transactions: transactions.data.data });
 
-    let auth_type = state().auth.auth_type;
-    let auth_id = state().auth.profile._id;
-    courses = await courses.data.data;
-
-    if (auth_type === "Instructor") {
-      let new_courses = [];
-      let chc = courses.filter((data) => data.instructors.length > 0);
-      console.log({ ins: chc });
-      for (let chck of chc) {
-        console.log({ ins: chck.instructors });
-        for (let chck2 of chck.instructors) {
-          console.log({ id: chck2._id, auth_id });
-          if (chck2.instructor === auth_id) {
-            new_courses.push(chck);
-          }
-        }
-      }
-      courses = new_courses;
-      console.log({ new_courses });
-    }
+    transactions = await transactions.data.data;
 
     dispatch({
-      type: GET_ALL_COURSES,
-      payload: courses,
+      type: GET_ALL_TRANSACTIONS,
+      payload: transactions,
     });
+    // await dispatch({ type: CLEAR_AUTH_ERROR });
   } catch (error) {
+    let err
     console.log({ err: error.response });
-    console.log({ err: error.message });
+    console.log({ error });
     if (error.response) {
-      error = error.response.data.error;
+      err = error.response.data.error;
     } else {
-      error = "Something went wrong. Try Again";
+      err = "Something went wrong. Try Again";
     }
     dispatch({
-      type: GET_ALL_COURSES,
+      type: GET_ALL_TRANSACTIONS,
       payload: [],
     });
   }
+  // await dispatch({ type: CLEAR_AUTH_ERROR });
 };

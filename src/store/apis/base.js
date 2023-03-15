@@ -2,6 +2,7 @@ import axios from "axios";
 
 
 const BASE = `https://kwaba.onrender.com`;
+// const BASE = `http://localhost:8001`;
 
 
 export const AUTH_TOKEN = "benny-token";

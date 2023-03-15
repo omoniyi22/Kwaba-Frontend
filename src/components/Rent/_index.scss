@@ -112,7 +112,8 @@
   }
   .op_button_next {
     font-size: 16px;
-    text-transform: lowercase;
+    text-transform: capitalize;
+    color: purple;
   }
   .the_options {
     padding: 11px 25px;

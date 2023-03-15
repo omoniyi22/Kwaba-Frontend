@@ -1,3 +1,4 @@
+import { AUTH_TOKEN } from "../apis/base";
 import {
   AUTH_ERROR,
   AUTHENTICATED,
@@ -5,6 +6,7 @@ import {
   LOGOUT,
   USER_LOADED,
   CLEAR_AUTH_ERROR,
+  PROFILE_CHANGED,
 } from "../types";
 
 const initialState = {
@@ -29,6 +31,13 @@ export default function (state = initialState, action) {
         isLoading: false,
         user: action.payload,
       };
+    case PROFILE_CHANGED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        user: action.payload,
+      };
     case CLEAR_AUTH_ERROR:
       return {
         ...state,
@@ -36,7 +45,7 @@ export default function (state = initialState, action) {
         errorMsg: "",
       };
     case AUTHENTICATED:
-      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem(AUTH_TOKEN, action.payload.token);
       return {
         ...state,
         ...action.payload,

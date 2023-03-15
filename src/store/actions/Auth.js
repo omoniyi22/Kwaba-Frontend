@@ -57,16 +57,14 @@ export const LoginAction = (loginDetails) => async (dispatch) => {
   });
   try {
     let login = await LoginApi(loginDetails);
-    console.log({ register: login.data });
+    console.log({ login: login.data });
     dispatch({
       type: AUTHENTICATED,
       payload: login.data,
       user: login.data.user,
     });
 
-    console.log({
-      login: login.data,
-    });
+   
   } catch (error) {
     let err
     console.log({ err: error.response });
@@ -93,7 +91,7 @@ export const ProfileUpdate =
       let ProfileId = Profile.user._id;
       let user = await editProfile(ProfileId, profileData);
 
-      user = await user.data.user;
+      user = await user.data.data;
       // user = { ...Profile, user };
 
       console.log({ user });
